@@ -11,6 +11,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using CommandsAPIMongo.Data;
+using MongoDB.Driver;
 
 namespace CommandsAPIMongo
 {
@@ -28,6 +30,10 @@ namespace CommandsAPIMongo
         {
 
             services.AddControllers();
+            services.AddScoped<ICommandAPIRepo, CommandAPIRepo>();
+            services.AddSingleton<IMongoClient, MongoClient>(sp =>
+                new MongoClient(Configuration.GetConnectionString("MongoDbConnectionString")));
+
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "CommandsAPIMongo", Version = "v1" });

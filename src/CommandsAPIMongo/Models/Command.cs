@@ -8,13 +8,18 @@ namespace CommandsAPIMongo.Models
     {
         [BsonId]
         [BsonRepresentation(BsonType.ObjectId)]
-        public int Id { get; set; }
-        [Required]
-        [MaxLength(250)]
+        public string Id { get; set; }
+
+        [JsonProperty(PropertyName = "HowTo")]
+        [BsonElement("HowTo")]
         public string HowTo { get; set; }
-        [Required]
+
+        [JsonProperty(PropertyName = "Platform")]
+        [BsonElement("Platform")]
         public string Platform { get; set; }
-        [Required]
+
+        [JsonProperty(PropertyName = "CommandLine")]
+        [BsonElement("CommandLine")]
         public string CommandLine { get; set; }
     }
 }
